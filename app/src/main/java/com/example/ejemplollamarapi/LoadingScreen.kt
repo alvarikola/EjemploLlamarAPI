@@ -23,6 +23,7 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 
+
 @Composable
 fun LoadingScreen() {
     Column(
@@ -35,9 +36,9 @@ fun LoadingScreen() {
             text = "Cargadno...",
             fontSize = TextUnit(8f, TextUnitType.Em),
             fontWeight = FontWeight.Bold
-        ) {
+        )
             LoadingGif()
-        }
+
     }
 }
 
@@ -47,7 +48,7 @@ fun LoadingGif() {
     val context = LocalContext.current
     val imageLoader = ImageLoader.Builder(context)
         .components{
-            if (Build.VERSION.SDK_INT >= 28) {
+            if (Build.VERSION.SDK_INT >= 36) {
                 add(ImageDecoderDecoder.Factory())
             } else {
                 add(GifDecoder.Factory())
