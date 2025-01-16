@@ -74,4 +74,8 @@ dependencies {
 
     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-viewmodel
     implementation("androidx.lifecycle:lifecycle-viewmodel:2.8.7")
+
+    // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-viewmodel-compose
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
+
 }

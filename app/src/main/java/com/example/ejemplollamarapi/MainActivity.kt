@@ -10,18 +10,21 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.ejemplollamarapi.ui.theme.EjemploLlamarAPITheme
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            EjemploLlamarAPITheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) {
-                    innerPadding ->
-
+            EjemploLlamarAPITheme(dynamicColor = false) {
+                val productViewModel: ProductViewModel = viewModel()
+                val context = LocalContext.current
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    ProductListScreen(productViewModel, context, innerPadding)
                 }
             }
         }
