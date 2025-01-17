@@ -1,6 +1,7 @@
 package com.example.ejemplollamarapi
 
 import android.content.Context
+import android.graphics.drawable.Icon
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -12,9 +13,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -78,13 +83,29 @@ fun CompleteProductListScreen(
                     colors = CardDefaults.cardColors(
                         containerColor = MaterialTheme.colorScheme.surfaceVariant,
                     ),
-                    modifier = Modifier.width(260.dp).padding(bottom = 25.dp)
+                    modifier = Modifier.width(270.dp).padding(bottom = 25.dp)
                 ) {
-                    Text(
-                        text = product.title,
-                        fontSize = TextUnit(5.5f, TextUnitType.Em),
-                        textAlign = TextAlign.Center,
-                    )
+                    Row(
+                        modifier = Modifier.padding(10.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = product.title,
+                            fontSize = TextUnit(5.5f, TextUnitType.Em),
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.weight(1f)
+                        )
+                        FilledIconButton(
+                            modifier = Modifier.size(25.dp).padding(start = 10.dp),
+                            onClick = {}
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.Add,
+                                contentDescription = "Añadir elemento"
+                            )
+                        }
+                    }
+
                     HorizontalDivider(
                         modifier = Modifier.padding(bottom = 10.dp),
                         thickness = 1.dp,
