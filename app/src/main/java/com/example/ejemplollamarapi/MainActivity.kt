@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -75,15 +76,15 @@ class MainActivity : ComponentActivity() {
 fun BottomBarItems(navController: NavController) {
     Row(
         modifier = Modifier.fillMaxWidth().padding(start = 30.dp, end = 30.dp),
-        verticalAligment = Alignment.CenterVertically,
-        horizontalArrangemnt = Arrangement.SpaceBetween
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         IconButton(
             onClick = {navController.navigate("product_list_screen")}
         ) {
             Icon(
                 modifier = Modifier.fillMaxSize(),
-                imageVector = Icons.Default.Home,
+                imageVector = Icons.Filled.Home,
                 contentDescription = "Lista de productos"
             )
         }
@@ -92,7 +93,7 @@ fun BottomBarItems(navController: NavController) {
         ) {
             Icon(
                 modifier = Modifier.fillMaxSize(),
-                imageVector = Icons.Default.Favorite,
+                imageVector = Icons.Filled.Favorite,
                 contentDescription = "Lista de favoritos"
             )
         }
@@ -101,7 +102,7 @@ fun BottomBarItems(navController: NavController) {
         ) {
             Icon(
                 modifier = Modifier.fillMaxSize(),
-                imageVector = Icons.Default.Favorite,
+                imageVector = Icons.Filled.Search,
                 contentDescription = "Lista de favoritos"
             )
         }
