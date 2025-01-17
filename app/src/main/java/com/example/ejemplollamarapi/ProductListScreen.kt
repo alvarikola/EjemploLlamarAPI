@@ -2,6 +2,7 @@ package com.example.ejemplollamarapi
 
 import android.content.Context
 import android.graphics.drawable.Icon
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -47,7 +48,7 @@ fun ProductListScreen(
         productViewModel.getAllProducts()
         LoadingScreen()
     } else {
-        CompleteProductListScreen(productViewModel.productList.value!!)
+        CompleteProductListScreen(productViewModel.productList.value!!, context)
     }
 }
 
@@ -55,6 +56,7 @@ fun ProductListScreen(
 @Composable
 fun CompleteProductListScreen(
     productList: List<ProductResponse>,
+    context: Context
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxWidth(),
@@ -97,7 +99,9 @@ fun CompleteProductListScreen(
                         )
                         FilledIconButton(
                             modifier = Modifier.size(25.dp).padding(start = 10.dp),
-                            onClick = {}
+                            onClick = {
+                                Toast.makeText(context, "Producto añadido", Toast.LENGTH_SHORT).show()
+                            }
                         ) {
                             Icon(
                                 imageVector = Icons.Filled.Add,
