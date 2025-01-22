@@ -1,5 +1,6 @@
 package com.example.ejemplollamarapi.network.product.model
 
+import com.example.ejemplollamarapi.db.Product
 import com.google.gson.annotations.SerializedName
 
 data class ProductResponse (
@@ -14,3 +15,18 @@ data class ProductResponse (
     @SerializedName("category") var category: String,
     @SerializedName("thumbnail") var thumbnail: String,
 )
+
+fun productToProductResponse(product: Product): ProductResponse {
+    return ProductResponse(
+        product.id,
+        product.title,
+        product.description,
+        product.price,
+        product.discountPercentage,
+        product.rating,
+        product.stock,
+        product.brand,
+        product.category,
+        product.thumbnail
+    )
+}

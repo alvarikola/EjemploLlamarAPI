@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,6 +25,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.ejemplollamarapi.ui.theme.EjemploLlamarAPITheme
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -58,6 +61,15 @@ class MainActivity : ComponentActivity() {
                     }
                 ) { innerPadding ->
                     val productViewModel: ProductViewModel = viewModel()
+                    val favouriteProductViewModel: FavouriteProductViewModel by viewModels<FavouriteProductViewModel>(
+                        factoryProducer = {
+                            object : ViewModelProvider.Factory {
+                                override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                                    return FavouriteProductViewModel(db.dao) as T
+                                }
+                            }
+                        }
+                    )
                     val context = LocalContext.current
                     NavHost(
                         navController = navController,
@@ -68,7 +80,7 @@ class MainActivity : ComponentActivity() {
                             ProductListScreen(productViewModel, context, innerPadding)
                         }
                         composable(route = "favourite_list_screen") {
-                            FavouriteListScreen()
+                            FavouriteListScreen(favouriteProductViewModel, context)
                         }
                         composable(route = "search_screen") {
                             SearchScreen()

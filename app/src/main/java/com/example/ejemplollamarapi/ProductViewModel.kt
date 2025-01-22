@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ejemplollamarapi.network.product.model.ProductRepository
+import com.example.ejemplollamarapi.network.product.ProductRepository
 import com.example.ejemplollamarapi.network.product.model.ProductResponse
 import kotlinx.coroutines.launch
 

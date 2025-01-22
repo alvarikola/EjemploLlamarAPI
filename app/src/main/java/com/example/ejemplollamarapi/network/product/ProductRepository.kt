@@ -1,6 +1,6 @@
-package com.example.ejemplollamarapi.network.product.model
+package com.example.ejemplollamarapi.network.product
 
-import com.example.ejemplollamarapi.network.product.ProductService
+import com.example.ejemplollamarapi.network.product.model.ProductListResponse
 
 class ProductRepository {
     val api = ProductService()
