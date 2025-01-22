@@ -56,6 +56,7 @@ fun ProductListScreen(
 @Composable
 fun CompleteProductListScreen(
     productList: List<ProductResponse>,
+    favouriteProductViewModel: FavouriteProductViewModel,
     context: Context
 ) {
     LazyColumn(
@@ -101,6 +102,7 @@ fun CompleteProductListScreen(
                             modifier = Modifier.size(25.dp).padding(start = 10.dp),
                             onClick = {
                                 Toast.makeText(context, "Producto añadido", Toast.LENGTH_SHORT).show()
+                                favouriteProductViewModel.insertOrUpdateFavoriteProduct(product)
                             }
                         ) {
                             Icon(
