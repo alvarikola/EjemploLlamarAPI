@@ -77,13 +77,13 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize().padding(innerPadding)
                     ) {
                         composable(route = "product_list_screen") {
-                            ProductListScreen(productViewModel, context, innerPadding)
+                            ProductListScreen(productViewModel, context, favouriteProductViewModel, innerPadding)
                         }
                         composable(route = "favourite_list_screen") {
                             FavouriteListScreen(favouriteProductViewModel, context)
                         }
                         composable(route = "search_screen") {
-                            SearchScreen()
+                            SearchScreen(productViewModel, favouriteProductViewModel, context)
                         }
                     }
 

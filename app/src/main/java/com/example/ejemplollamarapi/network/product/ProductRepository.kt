@@ -8,4 +8,8 @@ class ProductRepository {
     suspend fun getAllProducts(): ProductListResponse {
         return api.getAllProducts()
     }
+
+    suspend fun searchProduct(productoBuscar: String) : ProductListResponse {
+        return api.searchProduct(productoBuscar)
+    }
 }

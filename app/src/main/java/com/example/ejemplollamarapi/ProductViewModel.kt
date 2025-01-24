@@ -17,10 +17,21 @@ class ProductViewModel: ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    private val _productSearchList = MutableLiveData<List<ProductResponse>>(emptyList())
+    val productSearchList: LiveData<List<ProductResponse>> = _productSearchList
+
     fun getAllProducts() {
         viewModelScope.launch {
             _isLoading.value = true
             _productList.postValue(productListRepository.getAllProducts().productList)
+            _isLoading.value = false
+        }
+    }
+
+    fun searchProducts(productoBuscar: String) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            _productSearchList.postValue(productListRepository.searchProduct(productoBuscar).productList)
             _isLoading.value = false
         }
     }

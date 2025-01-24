@@ -33,7 +33,7 @@ fun LoadingScreen() {
     ) {
         Text(
             modifier = Modifier.padding(bottom = 40.dp),
-            text = "Cargadno...",
+            text = "Cargando...",
             fontSize = TextUnit(8f, TextUnitType.Em),
             fontWeight = FontWeight.Bold
         )

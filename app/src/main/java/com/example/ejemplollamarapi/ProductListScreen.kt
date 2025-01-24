@@ -35,12 +35,14 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.example.ejemplollamarapi.db.productResponseToProduct
 import com.example.ejemplollamarapi.network.product.model.ProductResponse
 
 @Composable
 fun ProductListScreen(
     productViewModel: ProductViewModel,
     context: Context,
+    favouriteProductViewModel: FavouriteProductViewModel,
     innerPaddingValues: PaddingValues
 ) {
     val isLoading: Boolean by productViewModel.isLoading.observeAsState(initial = true)
@@ -48,7 +50,7 @@ fun ProductListScreen(
         productViewModel.getAllProducts()
         LoadingScreen()
     } else {
-        CompleteProductListScreen(productViewModel.productList.value!!, context)
+        CompleteProductListScreen(productViewModel.productList.value!!, favouriteProductViewModel, context)
     }
 }
 
@@ -86,7 +88,9 @@ fun CompleteProductListScreen(
                     colors = CardDefaults.cardColors(
                         containerColor = MaterialTheme.colorScheme.surfaceVariant,
                     ),
-                    modifier = Modifier.width(270.dp).padding(bottom = 25.dp)
+                    modifier = Modifier
+                        .width(270.dp)
+                        .padding(bottom = 25.dp)
                 ) {
                     Row(
                         modifier = Modifier.padding(10.dp),
@@ -99,10 +103,14 @@ fun CompleteProductListScreen(
                             modifier = Modifier.weight(1f)
                         )
                         FilledIconButton(
-                            modifier = Modifier.size(25.dp).padding(start = 10.dp),
+                            modifier = Modifier
+                                .size(25.dp)
+                                .padding(start = 10.dp),
                             onClick = {
                                 Toast.makeText(context, "Producto añadido", Toast.LENGTH_SHORT).show()
-                                favouriteProductViewModel.insertOrUpdateFavoriteProduct(product)
+                                favouriteProductViewModel.insertOrUpdateFavoriteProduct(
+                                    productResponseToProduct(product)
+                                )
                             }
                         ) {
                             Icon(
@@ -118,7 +126,9 @@ fun CompleteProductListScreen(
                         color = Color.Gray
                     )
                     Column(
-                        modifier = Modifier.fillMaxSize().padding(start = 5.dp, bottom = 10.dp),
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(start = 5.dp, bottom = 10.dp),
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
